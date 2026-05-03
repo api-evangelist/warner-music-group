@@ -1,0 +1,177 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Warner Music Group Music Licensing"
+  description: >-
+    Unified workflow for Warner Music Group music licensing operations.
+    Enables content creators, developers, and licensing professionals to
+    search the WMG catalog, discover tracks, and submit license requests
+    for sync, mechanical, digital, and performance rights for recordings
+    and compositions from Warner Records, Atlantic Records, Elektra, and
+    Warner Chappell Music.
+  tags:
+    - Warner Music Group
+    - Music Licensing
+    - Sync Licensing
+    - Catalog
+    - Rights Management
+    - Entertainment
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+binds:
+  - namespace: env
+    keys:
+      WMG_ACCESS_TOKEN: WMG_ACCESS_TOKEN
+
+capability:
+  consumes:
+    - import: wmg-licensing
+      location: ./shared/wmg-licensing.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: wmg-music-api
+      description: "Unified REST API for WMG music licensing and catalog operations."
+      resources:
+        - path: /v1/catalog/search
+          name: catalog-search
+          description: Music catalog discovery
+          operations:
+            - method: GET
+              name: search-catalog
+              description: Search WMG catalog for recordings and compositions
+              call: "wmg-licensing.search-catalog"
+              with:
+                q: "rest.q"
+                type: "rest.type"
+                label: "rest.label"
+                limit: "rest.limit"
+                offset: "rest.offset"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/tracks/{isrc}
+          name: track
+          description: Individual track details
+          operations:
+            - method: GET
+              name: get-track
+              description: Get track details by ISRC code
+              call: "wmg-licensing.get-track"
+              with:
+                isrc: "rest.isrc"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/artists/{artistId}
+          name: artist
+          description: Artist profile data
+          operations:
+            - method: GET
+              name: get-artist
+              description: Get artist information and catalog summary
+              call: "wmg-licensing.get-artist"
+              with:
+                artistId: "rest.artistId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/licenses
+          name: licenses
+          description: License request management
+          operations:
+            - method: GET
+              name: list-licenses
+              description: List license requests
+              call: "wmg-licensing.list-licenses"
+              with:
+                status: "rest.status"
+                licenseType: "rest.licenseType"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: request-license
+              description: Submit a new music license request
+              call: "wmg-licensing.request-license"
+              with:
+                trackIsrc: "rest.trackIsrc"
+                licenseType: "rest.licenseType"
+                territory: "rest.territory"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: wmg-music-mcp
+      transport: http
+      description: "MCP server for AI-assisted WMG music licensing and catalog discovery."
+      tools:
+        - name: search-wmg-catalog
+          description: Search the Warner Music Group catalog for recordings and compositions by artist, title, or genre
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "wmg-licensing.search-catalog"
+          with:
+            q: "tools.q"
+            type: "tools.type"
+            label: "tools.label"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-track-by-isrc
+          description: Get detailed information about a WMG recording using its ISRC code
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "wmg-licensing.get-track"
+          with:
+            isrc: "tools.isrc"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-artist
+          description: Get artist profile and catalog information from the WMG roster
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "wmg-licensing.get-artist"
+          with:
+            artistId: "tools.artistId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-licenses
+          description: List submitted music license requests and their approval status
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "wmg-licensing.list-licenses"
+          with:
+            status: "tools.status"
+            licenseType: "tools.licenseType"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: request-sync-license
+          description: Submit a synchronization license request for use in film, TV, or advertising
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: "wmg-licensing.request-license"
+          with:
+            trackIsrc: "tools.trackIsrc"
+            licenseType: "tools.licenseType"
+            territory: "tools.territory"
+            useCase: "tools.useCase"
+          outputParameters:
+            - type: object
+              mapping: "$."

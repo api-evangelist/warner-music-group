@@ -1,0 +1,144 @@
+vocabulary:
+  name: Warner Music Group API Vocabulary
+  description: >-
+    Core vocabulary for the Warner Music Group Licensing API, covering
+    license types, music rights, catalog standards, territories, and
+    WMG brand labels.
+  version: "1.0.0"
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+terms:
+  # License Types
+  - term: sync
+    label: Synchronization License
+    category: License Type
+    description: >-
+      License granting the right to synchronize a music recording or composition
+      with visual media (film, television, advertising, video games, etc.).
+
+  - term: mechanical
+    label: Mechanical License
+    category: License Type
+    description: >-
+      License granting the right to reproduce a musical composition in recorded
+      format, required for physical and digital reproduction.
+
+  - term: digital
+    label: Digital License
+    category: License Type
+    description: >-
+      License for digital distribution and streaming of music recordings through
+      digital service providers (DSPs).
+
+  - term: performance
+    label: Performance License
+    category: License Type
+    description: >-
+      License granting the right to publicly perform a musical composition,
+      typically managed through performance rights organizations (PROs).
+
+  # License Statuses
+  - term: pending
+    label: Pending Review
+    category: License Status
+    description: License request has been submitted and is under review by WMG licensing team.
+
+  - term: approved
+    label: Approved
+    category: License Status
+    description: License request has been approved and rights are granted.
+
+  - term: rejected
+    label: Rejected
+    category: License Status
+    description: License request was denied by WMG.
+
+  - term: expired
+    label: Expired
+    category: License Status
+    description: Previously approved license has passed its end date.
+
+  # Standards
+  - term: ISRC
+    label: International Standard Recording Code
+    category: Industry Standard
+    description: >-
+      Internationally recognized code for uniquely identifying sound recordings
+      and music video recordings. Format: XX-XXX-YY-NNNNN.
+
+  - term: ISWC
+    label: International Standard Musical Work Code
+    category: Industry Standard
+    description: >-
+      International identifier for musical compositions (works). Format: T-NNNNNNNNN-C.
+
+  # WMG Labels
+  - term: Atlantic Records
+    label: Atlantic Records
+    category: WMG Label
+    description: >-
+      One of the largest and most successful record labels in the US, known for
+      pop, rock, hip-hop, and R&B. Part of Warner Music Group.
+
+  - term: Warner Records
+    label: Warner Records
+    category: WMG Label
+    description: >-
+      Formerly Warner Bros. Records, a major US record label with a diverse
+      artist roster across genres.
+
+  - term: Elektra Records
+    label: Elektra Records
+    category: WMG Label
+    description: >-
+      Historic American record label with roots in folk, rock, and alternative
+      music. Part of Warner Music Group.
+
+  - term: Reprise Records
+    label: Reprise Records
+    category: WMG Label
+    description: >-
+      American record label founded by Frank Sinatra, known for rock and
+      alternative artists.
+
+  - term: Warner Chappell Music
+    label: Warner Chappell Music
+    category: WMG Publishing
+    description: >-
+      One of the world's largest music publishing companies, representing
+      songwriters and composers for synchronization, mechanical, and
+      performance rights.
+
+  # Music Asset Types
+  - term: recording
+    label: Recording
+    category: Asset Type
+    description: A sound recording — a fixed version of a musical performance.
+
+  - term: composition
+    label: Composition
+    category: Asset Type
+    description: A musical work — the underlying melody, harmony, and lyrics.
+
+  # Territory
+  - term: WORLD
+    label: Worldwide
+    category: Territory
+    description: License covers all territories worldwide.
+
+categories:
+  - name: License Type
+    description: Types of music rights and licenses available from WMG
+  - name: License Status
+    description: Lifecycle states for WMG license requests
+  - name: Industry Standard
+    description: Standard identifiers and codes used in the music industry
+  - name: WMG Label
+    description: Record labels under the Warner Music Group umbrella
+  - name: WMG Publishing
+    description: Music publishing companies under Warner Music Group
+  - name: Asset Type
+    description: Types of music assets (recordings vs. compositions)
+  - name: Territory
+    description: Geographic territories for music licensing

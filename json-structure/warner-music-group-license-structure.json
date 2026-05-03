@@ -1,0 +1,20 @@
+{
+  "title": "WMG License Structure",
+  "description": "Data structure for Warner Music Group license request objects.",
+  "type": "object",
+  "fields": [
+    { "name": "id", "type": "string", "description": "License request identifier" },
+    { "name": "status", "type": "enum", "values": ["pending", "approved", "rejected", "expired"], "description": "License approval status" },
+    { "name": "licenseType", "type": "enum", "values": ["sync", "mechanical", "digital", "performance"], "description": "Type of music license", "required": true },
+    { "name": "trackIsrc", "type": "string", "description": "ISRC of licensed recording", "required": true },
+    { "name": "trackTitle", "type": "string", "description": "Track title" },
+    { "name": "artistName", "type": "string", "description": "Artist name" },
+    { "name": "useCase", "type": "string", "description": "Intended use description" },
+    { "name": "territory", "type": "string", "description": "ISO 3166 country code or WORLD", "required": true },
+    { "name": "startDate", "type": "string", "description": "License start date (YYYY-MM-DD)", "required": true },
+    { "name": "endDate", "type": "string", "description": "License end date (YYYY-MM-DD)", "required": true },
+    { "name": "exclusivity", "type": "boolean", "description": "Exclusive rights flag" },
+    { "name": "fee", "type": "number", "description": "License fee in USD" },
+    { "name": "submittedAt", "type": "string", "description": "ISO 8601 submission timestamp" }
+  ]
+}

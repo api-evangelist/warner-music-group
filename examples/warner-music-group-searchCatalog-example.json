@@ -1,0 +1,45 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.wmg.com/v1/catalog/search",
+    "headers": {
+      "Authorization": "Bearer YOUR_ACCESS_TOKEN",
+      "Accept": "application/json"
+    },
+    "params": {
+      "q": "Bruno Mars",
+      "type": "recording",
+      "limit": "5"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "data": [
+        {
+          "id": "rec-00001",
+          "type": "recording",
+          "title": "Uptown Funk",
+          "artistName": "Mark Ronson ft. Bruno Mars",
+          "isrc": "GBARL1401524",
+          "label": "Atlantic Records",
+          "releaseDate": "2014-11-10",
+          "licenseAvailable": true
+        },
+        {
+          "id": "rec-00002",
+          "type": "recording",
+          "title": "That's What I Like",
+          "artistName": "Bruno Mars",
+          "isrc": "USAT21601773",
+          "label": "Atlantic Records",
+          "releaseDate": "2017-01-30",
+          "licenseAvailable": true
+        }
+      ],
+      "total": 48,
+      "limit": 5,
+      "offset": 0
+    }
+  }
+}

@@ -1,0 +1,471 @@
+openapi: 3.0.3
+info:
+  title: Warner Music Group Licensing API
+  description: >-
+    The Warner Music Group Licensing API enables content creators and developers
+    to search the WMG catalog, request synchronization licenses, mechanical
+    licenses, and digital licenses for music recordings and compositions from
+    Warner Records, Atlantic Records, Elektra Records, and Warner Chappell Music.
+    The API covers all major use cases including film/TV sync, advertising,
+    digital services, and live performance.
+  version: 1.0.0
+  contact:
+    name: WMG Licensing Support
+    url: https://www.wmgmusiclicensing.com/
+    email: onlinelicensing@wmg.com
+  termsOfService: https://www.wmg.com/terms
+servers:
+  - url: https://api.wmg.com
+    description: WMG API Production
+tags:
+  - name: Catalog
+    description: Music catalog search and discovery
+  - name: Licenses
+    description: License request and management
+  - name: Tracks
+    description: Track and recording details
+  - name: Artists
+    description: Artist information
+paths:
+  /v1/catalog/search:
+    get:
+      operationId: searchCatalog
+      summary: Search Music Catalog
+      description: >-
+        Search the WMG music catalog for recordings and compositions.
+        Supports searching by artist name, track title, ISRC, ISWC, or
+        keyword.
+      tags:
+        - Catalog
+      parameters:
+        - name: q
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Search query (artist name, track title, or keyword)
+        - name: type
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - recording
+              - composition
+              - both
+            default: both
+          description: Type of music asset to search
+        - name: label
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter by record label
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 20
+            maximum: 100
+          description: Maximum results to return
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 0
+          description: Pagination offset
+      responses:
+        '200':
+          description: Search results returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CatalogSearchResponse'
+        '400':
+          description: Invalid search parameters
+        '401':
+          description: Unauthorized
+  /v1/tracks/{isrc}:
+    get:
+      operationId: getTrack
+      summary: Get Track by ISRC
+      description: >-
+        Retrieve full details of a recording by its International Standard
+        Recording Code (ISRC).
+      tags:
+        - Tracks
+      parameters:
+        - name: isrc
+          in: path
+          required: true
+          schema:
+            type: string
+          description: International Standard Recording Code (ISRC)
+      responses:
+        '200':
+          description: Track details returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrackResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Track not found
+  /v1/artists/{artistId}:
+    get:
+      operationId: getArtist
+      summary: Get Artist
+      description: Retrieve artist profile and catalog information.
+      tags:
+        - Artists
+      parameters:
+        - name: artistId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: WMG artist identifier
+      responses:
+        '200':
+          description: Artist information returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArtistResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Artist not found
+  /v1/licenses:
+    get:
+      operationId: listLicenses
+      summary: List Licenses
+      description: List all license requests submitted by the authenticated partner.
+      tags:
+        - Licenses
+      parameters:
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - pending
+              - approved
+              - rejected
+              - expired
+          description: Filter by license status
+        - name: licenseType
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - sync
+              - mechanical
+              - digital
+              - performance
+          description: Filter by license type
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 20
+          description: Maximum results to return
+      responses:
+        '200':
+          description: License list returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LicenseListResponse'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: requestLicense
+      summary: Request License
+      description: >-
+        Submit a new license request for a WMG recording or composition.
+        Specify the use case (sync, mechanical, digital, performance) and
+        usage details.
+      tags:
+        - Licenses
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LicenseRequest'
+      responses:
+        '201':
+          description: License request submitted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LicenseResponse'
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+  /v1/licenses/{licenseId}:
+    get:
+      operationId: getLicense
+      summary: Get License
+      description: Retrieve the details and status of a specific license request.
+      tags:
+        - Licenses
+      parameters:
+        - name: licenseId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: License request identifier
+      responses:
+        '200':
+          description: License details returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LicenseResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          description: License not found
+components:
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      description: OAuth 2.0 for WMG partner authentication
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.wmg.com/oauth/authorize
+          tokenUrl: https://auth.wmg.com/oauth/token
+          scopes:
+            catalog:read: Read catalog information
+            licenses:read: Read license requests
+            licenses:write: Submit license requests
+  schemas:
+    Track:
+      type: object
+      properties:
+        isrc:
+          type: string
+          description: International Standard Recording Code
+        title:
+          type: string
+          description: Track title
+        artistName:
+          type: string
+          description: Primary artist name
+        artistId:
+          type: string
+          description: WMG artist identifier
+        albumTitle:
+          type: string
+          description: Album or release title
+        releaseDate:
+          type: string
+          format: date
+          description: Original release date
+        duration:
+          type: integer
+          description: Track duration in seconds
+        label:
+          type: string
+          description: Record label name
+        genre:
+          type: string
+          description: Music genre
+        explicit:
+          type: boolean
+          description: Whether the track contains explicit content
+        licenseAvailable:
+          type: boolean
+          description: Whether this track is available for licensing
+    TrackResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Track'
+    Artist:
+      type: object
+      properties:
+        id:
+          type: string
+          description: WMG artist identifier
+        name:
+          type: string
+          description: Artist name
+        label:
+          type: string
+          description: Signed record label
+        genres:
+          type: array
+          items:
+            type: string
+          description: Music genres associated with the artist
+        trackCount:
+          type: integer
+          description: Number of tracks in the WMG catalog
+        website:
+          type: string
+          format: uri
+          description: Official artist website
+    ArtistResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Artist'
+    CatalogSearchResult:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+            - recording
+            - composition
+        title:
+          type: string
+        artistName:
+          type: string
+        isrc:
+          type: string
+          description: ISRC code (for recordings)
+        iswc:
+          type: string
+          description: ISWC code (for compositions)
+        label:
+          type: string
+        releaseDate:
+          type: string
+          format: date
+        licenseAvailable:
+          type: boolean
+    CatalogSearchResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/CatalogSearchResult'
+        total:
+          type: integer
+          description: Total matching results
+        limit:
+          type: integer
+        offset:
+          type: integer
+    License:
+      type: object
+      properties:
+        id:
+          type: string
+          description: License request identifier
+        status:
+          type: string
+          enum:
+            - pending
+            - approved
+            - rejected
+            - expired
+        licenseType:
+          type: string
+          enum:
+            - sync
+            - mechanical
+            - digital
+            - performance
+        trackIsrc:
+          type: string
+          description: ISRC of the licensed recording
+        trackTitle:
+          type: string
+          description: Licensed track title
+        artistName:
+          type: string
+        useCase:
+          type: string
+          description: Intended use case (film, TV, advertising, etc.)
+        territory:
+          type: string
+          description: License territory (ISO 3166 country code or WORLD)
+        startDate:
+          type: string
+          format: date
+          description: License start date
+        endDate:
+          type: string
+          format: date
+          description: License end date
+        fee:
+          type: number
+          description: License fee in USD
+        submittedAt:
+          type: string
+          format: date-time
+    LicenseListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/License'
+        total:
+          type: integer
+    LicenseResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/License'
+    LicenseRequest:
+      type: object
+      required:
+        - trackIsrc
+        - licenseType
+        - useCase
+        - territory
+        - startDate
+        - endDate
+      properties:
+        trackIsrc:
+          type: string
+          description: ISRC of the recording to license
+        licenseType:
+          type: string
+          enum:
+            - sync
+            - mechanical
+            - digital
+            - performance
+          description: Type of license requested
+        useCase:
+          type: string
+          description: Description of intended use (e.g., "TV commercial", "streaming film")
+        territory:
+          type: string
+          description: License territory (ISO 3166 country code or WORLD)
+        startDate:
+          type: string
+          format: date
+          description: Requested license start date
+        endDate:
+          type: string
+          format: date
+          description: Requested license end date
+        exclusivity:
+          type: boolean
+          default: false
+          description: Whether exclusive rights are requested
+        notes:
+          type: string
+          description: Additional notes or context for the license request
+security:
+  - OAuth2:
+      - catalog:read

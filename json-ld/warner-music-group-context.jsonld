@@ -1,0 +1,76 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "wmg": "https://api.wmg.com/#",
+    "mo": "http://purl.org/ontology/mo/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "MusicRecording": "schema:MusicRecording",
+    "MusicComposition": "schema:MusicComposition",
+    "MusicGroup": "schema:MusicGroup",
+    "RecordLabel": "schema:Organization",
+    "License": "wmg:License",
+
+    "isrc": {
+      "@id": "mo:isrc",
+      "@type": "xsd:string"
+    },
+    "iswc": {
+      "@id": "mo:iswc",
+      "@type": "xsd:string"
+    },
+    "title": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "artistName": {
+      "@id": "schema:byArtist",
+      "@type": "xsd:string"
+    },
+    "albumTitle": {
+      "@id": "schema:inAlbum",
+      "@type": "xsd:string"
+    },
+    "duration": {
+      "@id": "schema:duration",
+      "@type": "xsd:integer"
+    },
+    "releaseDate": {
+      "@id": "schema:datePublished",
+      "@type": "xsd:date"
+    },
+    "genre": {
+      "@id": "schema:genre",
+      "@type": "xsd:string"
+    },
+    "label": {
+      "@id": "schema:recordLabel",
+      "@type": "xsd:string"
+    },
+    "licenseType": {
+      "@id": "wmg:licenseType",
+      "@type": "xsd:string"
+    },
+    "territory": {
+      "@id": "schema:spatialCoverage",
+      "@type": "xsd:string"
+    },
+    "startDate": {
+      "@id": "schema:startDate",
+      "@type": "xsd:date"
+    },
+    "endDate": {
+      "@id": "schema:endDate",
+      "@type": "xsd:date"
+    },
+    "useCase": {
+      "@id": "wmg:useCase",
+      "@type": "xsd:string"
+    },
+    "fee": {
+      "@id": "schema:price",
+      "@type": "xsd:decimal"
+    }
+  }
+}

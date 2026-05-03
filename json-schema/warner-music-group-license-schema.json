@@ -1,0 +1,68 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/api-evangelist/warner-music-group/blob/main/json-schema/warner-music-group-license-schema.json",
+  "title": "Warner Music Group License",
+  "description": "Schema for a WMG music license request.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique license request identifier"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "approved", "rejected", "expired"],
+      "description": "Current license status"
+    },
+    "licenseType": {
+      "type": "string",
+      "enum": ["sync", "mechanical", "digital", "performance"],
+      "description": "Type of music license"
+    },
+    "trackIsrc": {
+      "type": "string",
+      "description": "ISRC of the licensed recording"
+    },
+    "trackTitle": {
+      "type": "string",
+      "description": "Licensed track title"
+    },
+    "artistName": {
+      "type": "string",
+      "description": "Recording artist name"
+    },
+    "useCase": {
+      "type": "string",
+      "description": "Description of intended use"
+    },
+    "territory": {
+      "type": "string",
+      "description": "License territory (ISO 3166 country code or WORLD)"
+    },
+    "startDate": {
+      "type": "string",
+      "format": "date",
+      "description": "License start date"
+    },
+    "endDate": {
+      "type": "string",
+      "format": "date",
+      "description": "License end date"
+    },
+    "exclusivity": {
+      "type": "boolean",
+      "description": "Whether exclusive rights were requested",
+      "default": false
+    },
+    "fee": {
+      "type": "number",
+      "description": "License fee in USD"
+    },
+    "submittedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "License request submission timestamp"
+    }
+  },
+  "required": ["trackIsrc", "licenseType", "territory", "startDate", "endDate"]
+}
