@@ -1,0 +1,168 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Warner Music Group Licensing API — Licenses
+  description: 'Warner Music Group Licensing API — Licenses. 3 operations. Lead operation: List Licenses. Self-contained Naftiko
+    capability covering one Warner Music Group business surface.'
+  tags:
+  - Warner Music Group
+  - Licenses
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    WARNER_MUSIC_GROUP_API_KEY: WARNER_MUSIC_GROUP_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: licensing-licenses
+    baseUri: https://api.wmg.com
+    description: Warner Music Group Licensing API — Licenses business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-licenses
+      path: /v1/licenses
+      operations:
+      - name: listlicenses
+        method: GET
+        description: List Licenses
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: status
+          in: query
+          type: string
+          description: Filter by license status
+        - name: licenseType
+          in: query
+          type: string
+          description: Filter by license type
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum results to return
+      - name: requestlicense
+        method: POST
+        description: Request License
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v1-licenses-licenseId
+      path: /v1/licenses/{licenseId}
+      operations:
+      - name: getlicense
+        method: GET
+        description: Get License
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: licenseId
+          in: path
+          type: string
+          description: License request identifier
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.WARNER_MUSIC_GROUP_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: licensing-licenses-rest
+    port: 8080
+    description: REST adapter for Warner Music Group Licensing API — Licenses. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/v1/licenses
+      name: v1-licenses
+      description: REST surface for v1-licenses.
+      operations:
+      - method: GET
+        name: listlicenses
+        description: List Licenses
+        call: licensing-licenses.listlicenses
+        with:
+          status: rest.status
+          licenseType: rest.licenseType
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: requestlicense
+        description: Request License
+        call: licensing-licenses.requestlicense
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/licenses/{licenseid}
+      name: v1-licenses-licenseid
+      description: REST surface for v1-licenses-licenseId.
+      operations:
+      - method: GET
+        name: getlicense
+        description: Get License
+        call: licensing-licenses.getlicense
+        with:
+          licenseId: rest.licenseId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: licensing-licenses-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Warner Music Group Licensing API — Licenses. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: list-licenses
+      description: List Licenses
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: licensing-licenses.listlicenses
+      with:
+        status: tools.status
+        licenseType: tools.licenseType
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: request-license
+      description: Request License
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: licensing-licenses.requestlicense
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-license
+      description: Get License
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: licensing-licenses.getlicense
+      with:
+        licenseId: tools.licenseId
+      outputParameters:
+      - type: object
+        mapping: $.

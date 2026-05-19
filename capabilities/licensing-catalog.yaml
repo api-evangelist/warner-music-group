@@ -1,0 +1,104 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Warner Music Group Licensing API — Catalog
+  description: 'Warner Music Group Licensing API — Catalog. 1 operations. Lead operation: Search Music Catalog. Self-contained
+    Naftiko capability covering one Warner Music Group business surface.'
+  tags:
+  - Warner Music Group
+  - Catalog
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    WARNER_MUSIC_GROUP_API_KEY: WARNER_MUSIC_GROUP_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: licensing-catalog
+    baseUri: https://api.wmg.com
+    description: Warner Music Group Licensing API — Catalog business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-catalog-search
+      path: /v1/catalog/search
+      operations:
+      - name: searchcatalog
+        method: GET
+        description: Search Music Catalog
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: q
+          in: query
+          type: string
+          description: Search query (artist name, track title, or keyword)
+          required: true
+        - name: type
+          in: query
+          type: string
+          description: Type of music asset to search
+        - name: label
+          in: query
+          type: string
+          description: Filter by record label
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum results to return
+        - name: offset
+          in: query
+          type: integer
+          description: Pagination offset
+    authentication:
+      type: bearer
+      token: '{{env.WARNER_MUSIC_GROUP_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: licensing-catalog-rest
+    port: 8080
+    description: REST adapter for Warner Music Group Licensing API — Catalog. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/v1/catalog/search
+      name: v1-catalog-search
+      description: REST surface for v1-catalog-search.
+      operations:
+      - method: GET
+        name: searchcatalog
+        description: Search Music Catalog
+        call: licensing-catalog.searchcatalog
+        with:
+          q: rest.q
+          type: rest.type
+          label: rest.label
+          limit: rest.limit
+          offset: rest.offset
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: licensing-catalog-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Warner Music Group Licensing API — Catalog. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: search-music-catalog
+      description: Search Music Catalog
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: licensing-catalog.searchcatalog
+      with:
+        q: tools.q
+        type: tools.type
+        label: tools.label
+        limit: tools.limit
+        offset: tools.offset
+      outputParameters:
+      - type: object
+        mapping: $.

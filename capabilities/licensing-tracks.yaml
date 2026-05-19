@@ -1,0 +1,80 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Warner Music Group Licensing API — Tracks
+  description: 'Warner Music Group Licensing API — Tracks. 1 operations. Lead operation: Get Track by ISRC. Self-contained
+    Naftiko capability covering one Warner Music Group business surface.'
+  tags:
+  - Warner Music Group
+  - Tracks
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    WARNER_MUSIC_GROUP_API_KEY: WARNER_MUSIC_GROUP_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: licensing-tracks
+    baseUri: https://api.wmg.com
+    description: Warner Music Group Licensing API — Tracks business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-tracks-isrc
+      path: /v1/tracks/{isrc}
+      operations:
+      - name: gettrack
+        method: GET
+        description: Get Track by ISRC
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: isrc
+          in: path
+          type: string
+          description: International Standard Recording Code (ISRC)
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.WARNER_MUSIC_GROUP_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: licensing-tracks-rest
+    port: 8080
+    description: REST adapter for Warner Music Group Licensing API — Tracks. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/v1/tracks/{isrc}
+      name: v1-tracks-isrc
+      description: REST surface for v1-tracks-isrc.
+      operations:
+      - method: GET
+        name: gettrack
+        description: Get Track by ISRC
+        call: licensing-tracks.gettrack
+        with:
+          isrc: rest.isrc
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: licensing-tracks-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Warner Music Group Licensing API — Tracks. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: get-track-isrc
+      description: Get Track by ISRC
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: licensing-tracks.gettrack
+      with:
+        isrc: tools.isrc
+      outputParameters:
+      - type: object
+        mapping: $.
