@@ -1,0 +1,200 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Warner Music Group Licensing API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://auth.wmg.com/oauth/authorize",
+      "accessTokenUrl": "https://auth.wmg.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Catalog",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search Music Catalog",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wmg.com/v1/catalog/search",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search query (artist name, track title, or keyword)"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Type of music asset to search"
+              },
+              {
+                "name": "label",
+                "value": "",
+                "type": "query",
+                "description": "Filter by record label"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum results to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset"
+              }
+            ]
+          },
+          "docs": "Search the WMG music catalog for recordings and compositions. Supports searching by artist name, track title, ISRC, ISWC, or keyword."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Tracks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Track by ISRC",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wmg.com/v1/tracks/:isrc",
+            "params": [
+              {
+                "name": "isrc",
+                "value": "",
+                "type": "path",
+                "description": "International Standard Recording Code (ISRC)"
+              }
+            ]
+          },
+          "docs": "Retrieve full details of a recording by its International Standard Recording Code (ISRC)."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Artists",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Artist",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wmg.com/v1/artists/:artistId",
+            "params": [
+              {
+                "name": "artistId",
+                "value": "",
+                "type": "path",
+                "description": "WMG artist identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve artist profile and catalog information."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Licenses",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Licenses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wmg.com/v1/licenses",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by license status"
+              },
+              {
+                "name": "licenseType",
+                "value": "",
+                "type": "query",
+                "description": "Filter by license type"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum results to return"
+              }
+            ]
+          },
+          "docs": "List all license requests submitted by the authenticated partner."
+        },
+        {
+          "info": {
+            "name": "Request License",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.wmg.com/v1/licenses",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit a new license request for a WMG recording or composition. Specify the use case (sync, mechanical, digital, performance) and usage details."
+        },
+        {
+          "info": {
+            "name": "Get License",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wmg.com/v1/licenses/:licenseId",
+            "params": [
+              {
+                "name": "licenseId",
+                "value": "",
+                "type": "path",
+                "description": "License request identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve the details and status of a specific license request."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

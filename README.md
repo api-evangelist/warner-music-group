@@ -1,88 +1,67 @@
-# Warner Music Group
+# Warner Music Group (warner-music-group)
 
-Warner Music Group is one of the major record labels in the music industry, with recorded music and music publishing operations spanning a roster of artists, songwriters, and labels. WMG includes Warner Records, Atlantic Records, Elektra Records, and Warner Chappell Music. The company provides music licensing APIs and developer tools for integrating licensed music into applications.
+Warner Music Group is one of the major record labels in the music industry, with recorded music and music publishing operations spanning a roster of artists, songwriters, and labels around the world. WMG includes Warner Records, Atlantic Records, Elektra Records, and Warner Chappell Music (one of the world's largest music publishing companies). WMG provides music licensing APIs and developer tools for integrating licensed music into applications.
 
-- **Website:** [https://www.wmg.com/](https://www.wmg.com/)
-- **Licensing Portal:** [https://www.wmgmusiclicensing.com/](https://www.wmgmusiclicensing.com/)
-- **Warner Chappell Music:** [https://warnerchappell.com/](https://warnerchappell.com/)
+**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/warner-music-group/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/warner-music-group/refs/heads/main/apis.yml)
+
+## Scope
+
+- **Type:** Index
+- **Position:** Consumer
+- **Access:** 3rd-Party
+
+## Tags
+
+- Music
+- Entertainment
+- Streaming
+- Licensing
+- Publishing
+
+## Timestamps
+
+- **Created:** 2026-03-24
+- **Modified:** 2026-05-19
 
 ## APIs
 
 ### Warner Music Group Licensing API
 
-API for searching the WMG catalog and requesting sync, mechanical, digital, and performance licenses for recordings and compositions.
+The Warner Music Group Licensing API enables content creators and developers to request synchronization licenses, mechanical licenses, and other music rights for WMG's catalog of recordings and compositions. The API covers tracks from Warner Records, Atlantic Records, Elektra, and Warner Chappell Music publishing.
 
+- **Human URL:** [https://www.wmgmusiclicensing.com/](https://www.wmgmusiclicensing.com/)
 - **Base URL:** `https://api.wmg.com`
-- **Authentication:** OAuth 2.0 Authorization Code
-- **Licensing Contact:** [onlinelicensing@wmg.com](mailto:onlinelicensing@wmg.com)
 
-## Artifacts
+#### Tags
 
-### OpenAPI Specifications
+- Music Licensing
+- Sync Licensing
+- Content Rights
+- Publishing
 
-| Spec | Description |
-|------|-------------|
-| [warner-music-group-licensing-openapi.yml](openapi/warner-music-group-licensing-openapi.yml) | WMG Licensing API — catalog search, tracks, artists, licenses |
+#### Properties
 
-### Spectral Rules
+- [Documentation](https://www.wmgmusiclicensing.com/)
+- [OpenAPI](openapi/warner-music-group-licensing-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/warner-music-group-licensing.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/warner-music-group-licensing.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Spectral Rules](rules/warner-music-group-rules.yml)
+- [JSON Schema](json-schema/warner-music-group-license-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [J S O N L D Context](json-ld/warner-music-group-context.jsonld)
+- [Vocabulary](vocabulary/warner-music-group-vocabulary.yml)
 
-| Ruleset | Description |
-|---------|-------------|
-| [warner-music-group-rules.yml](rules/warner-music-group-rules.yml) | Spectral ruleset for WMG API conventions |
+## Common Properties
 
-### Naftiko Capabilities
-
-#### Shared Per-API Definitions
-
-| File | Description |
-|------|-------------|
-| [capabilities/shared/wmg-licensing.yaml](capabilities/shared/wmg-licensing.yaml) | WMG Licensing API definition |
-
-#### Workflow Capabilities
-
-| Workflow | Description | Tools |
-|----------|-------------|-------|
-| [music-licensing.yaml](capabilities/music-licensing.yaml) | Music catalog discovery and licensing workflow | 5 tools |
-
-### JSON Schemas
-
-| Schema | Description |
-|--------|-------------|
-| [warner-music-group-license-schema.json](json-schema/warner-music-group-license-schema.json) | Music license request schema |
-
-### JSON Structures
-
-| Structure | Description |
-|-----------|-------------|
-| [warner-music-group-license-structure.json](json-structure/warner-music-group-license-structure.json) | License data structure documentation |
-
-### JSON-LD Contexts
-
-| Context | Description |
-|---------|-------------|
-| [warner-music-group-context.jsonld](json-ld/warner-music-group-context.jsonld) | JSON-LD context (schema.org + Music Ontology aligned) |
-
-### Examples
-
-| Example | Description |
-|---------|-------------|
-| [warner-music-group-searchCatalog-example.json](examples/warner-music-group-searchCatalog-example.json) | Catalog search request/response example |
-
-### Vocabulary
-
-| File | Description |
-|------|-------------|
-| [warner-music-group-vocabulary.yml](vocabulary/warner-music-group-vocabulary.yml) | WMG music licensing vocabulary |
-
-## Labels
-
-- **Warner Records** — Pop, rock, country, and alternative
-- **Atlantic Records** — Pop, hip-hop, R&B, and rock
-- **Elektra Records** — Rock and alternative
-- **Reprise Records** — Rock and alternative
-- **Warner Chappell Music** — Global music publishing
-- **Warner Chappell Production Music** — Production music library
+- [LinkedIn](https://www.linkedin.com/company/warner-music-group)
+- [Website](https://www.wmg.com/)
+- [Portal](https://www.wmgmusiclicensing.com/)
+- [Website](https://warnerchappell.com/)
+- [Documentation](https://warnerchappell.com/music-licensing)
+- [Website](https://www.warnerchappellpm.com/)
+- [Portal](https://developer.wmg.com/)
+- [GitHub Organization](https://github.com/wmg)
 
 ## Maintainers
 
-**Kin Lane** — [kin@apievangelist.com](mailto:kin@apievangelist.com)
+**FN:** Kin Lane
+**Email:** kin@apievangelist.com
