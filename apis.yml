@@ -10,7 +10,7 @@ tags:
   - Licensing
   - Publishing
 type: Index
-image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 position: Consumer
 description: >-
@@ -26,7 +26,7 @@ apis:
       - Sync Licensing
       - Content Rights
       - Publishing
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     baseURL: https://api.wmg.com
     humanURL: https://www.wmgmusiclicensing.com/
     properties:
