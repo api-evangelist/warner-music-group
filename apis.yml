@@ -47,6 +47,10 @@ apis:
       mechanical licenses, and other music rights for WMG's catalog of recordings and compositions. The API covers
       tracks from Warner Records, Atlantic Records, Elektra, and Warner Chappell Music publishing.
 common:
+  - type: Authentication
+    url: authentication/warner-music-group-authentication.yml
+  - type: OAuthScopes
+    url: scopes/warner-music-group-scopes.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/warner-music-group
   - url: https://www.wmg.com/
@@ -70,6 +74,8 @@ common:
   - url: https://github.com/wmg
     name: WMG GitHub Organization
     type: GitHubOrganization
+  - url: https://www.wmg.com/feed
+    type: Blog
 labels:
   - Warner Records
   - Atlantic Records

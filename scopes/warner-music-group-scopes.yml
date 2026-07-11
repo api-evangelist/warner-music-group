@@ -1,0 +1,30 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/warner-music-group-licensing-openapi.yml
+schemes:
+- name: OAuth2
+  source: openapi/warner-music-group-licensing-openapi.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://auth.wmg.com/oauth/authorize
+    tokenUrl: https://auth.wmg.com/oauth/token
+  description: OAuth 2.0 for WMG partner authentication
+scopes:
+- scope: catalog:read
+  description: Read catalog information
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/warner-music-group-licensing-openapi.yml
+- scope: licenses:read
+  description: Read license requests
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/warner-music-group-licensing-openapi.yml
+- scope: licenses:write
+  description: Submit license requests
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/warner-music-group-licensing-openapi.yml
