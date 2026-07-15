@@ -47,6 +47,8 @@ apis:
       mechanical licenses, and other music rights for WMG's catalog of recordings and compositions. The API covers
       tracks from Warner Records, Atlantic Records, Elektra, and Warner Chappell Music publishing.
 common:
+  - type: AgenticAccess
+    url: agentic-access/warner-music-group-agentic-access.yml
   - type: DomainSecurity
     url: security/warner-music-group-domain-security.yml
   - type: Authentication
