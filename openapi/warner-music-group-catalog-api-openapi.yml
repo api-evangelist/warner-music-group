@@ -1,0 +1,132 @@
+openapi: 3.0.3
+info:
+  title: Warner Music Group Licensing Artists Catalog API
+  description: The Warner Music Group Licensing API enables content creators and developers to search the WMG catalog, request synchronization licenses, mechanical licenses, and digital licenses for music recordings and compositions from Warner Records, Atlantic Records, Elektra Records, and Warner Chappell Music. The API covers all major use cases including film/TV sync, advertising, digital services, and live performance.
+  version: 1.0.0
+  contact:
+    name: WMG Licensing Support
+    url: https://www.wmgmusiclicensing.com/
+    email: onlinelicensing@wmg.com
+  termsOfService: https://www.wmg.com/terms
+servers:
+- url: https://api.wmg.com
+  description: WMG API Production
+security:
+- OAuth2:
+  - catalog:read
+tags:
+- name: Catalog
+  description: Music catalog search and discovery
+paths:
+  /v1/catalog/search:
+    get:
+      operationId: searchCatalog
+      summary: Search Music Catalog
+      description: Search the WMG music catalog for recordings and compositions. Supports searching by artist name, track title, ISRC, ISWC, or keyword.
+      tags:
+      - Catalog
+      parameters:
+      - name: q
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Search query (artist name, track title, or keyword)
+      - name: type
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - recording
+          - composition
+          - both
+          default: both
+        description: Type of music asset to search
+      - name: label
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter by record label
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 20
+          maximum: 100
+        description: Maximum results to return
+      - name: offset
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 0
+        description: Pagination offset
+      responses:
+        '200':
+          description: Search results returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CatalogSearchResponse'
+        '400':
+          description: Invalid search parameters
+        '401':
+          description: Unauthorized
+components:
+  schemas:
+    CatalogSearchResult:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+          - recording
+          - composition
+        title:
+          type: string
+        artistName:
+          type: string
+        isrc:
+          type: string
+          description: ISRC code (for recordings)
+        iswc:
+          type: string
+          description: ISWC code (for compositions)
+        label:
+          type: string
+        releaseDate:
+          type: string
+          format: date
+        licenseAvailable:
+          type: boolean
+    CatalogSearchResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/CatalogSearchResult'
+        total:
+          type: integer
+          description: Total matching results
+        limit:
+          type: integer
+        offset:
+          type: integer
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      description: OAuth 2.0 for WMG partner authentication
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.wmg.com/oauth/authorize
+          tokenUrl: https://auth.wmg.com/oauth/token
+          scopes:
+            catalog:read: Read catalog information
+            licenses:read: Read license requests
+            licenses:write: Submit license requests
