@@ -1,5 +1,18 @@
 aid: warner-music-group
 url: https://raw.githubusercontent.com/api-evangelist/warner-music-group/refs/heads/main/apis.yml
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 created: '2026-03-24'
 modified: '2026-05-19'
 name: Warner Music Group
@@ -10,7 +23,7 @@ tags:
   - Licensing
   - Publishing
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/warner-music-group.png
 access: 3rd-Party
 position: Consumer
 description: >-
@@ -19,33 +32,86 @@ description: >-
   Atlantic Records, Elektra Records, and Warner Chappell Music (one of the world's largest music publishing companies).
   WMG provides music licensing APIs and developer tools for integrating licensed music into applications.
 apis:
-  - aid: warner-music-group:wmg-licensing-api
-    name: Warner Music Group Licensing API
-    tags:
-      - Music Licensing
-      - Sync Licensing
-      - Content Rights
-      - Publishing
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    baseURL: https://api.wmg.com
-    humanURL: https://www.wmgmusiclicensing.com/
-    properties:
-      - url: https://www.wmgmusiclicensing.com/
-        type: Documentation
-      - url: openapi/warner-music-group-licensing-openapi.yml
-        type: OpenAPI
-      - url: rules/warner-music-group-rules.yml
-        type: SpectralRules
-      - url: json-schema/warner-music-group-license-schema.json
-        type: JSONSchema
-      - url: json-ld/warner-music-group-context.jsonld
-        type: JSONLDContext
-      - url: vocabulary/warner-music-group-vocabulary.yml
-        type: Vocabulary
-    description: >-
-      The Warner Music Group Licensing API enables content creators and developers to request synchronization licenses,
-      mechanical licenses, and other music rights for WMG's catalog of recordings and compositions. The API covers
-      tracks from Warner Records, Atlantic Records, Elektra, and Warner Chappell Music publishing.
+- aid: warner-music-group:warner-music-group-artists-api
+  name: Warner Music Group Artists API
+  description: Artist information
+  humanURL: https://www.wmgmusiclicensing.com/
+  baseURL: https://api.wmg.com
+  tags:
+  - Artists
+  properties:
+  - type: OpenAPI
+    url: openapi/warner-music-group-artists-api-openapi.yml
+  - type: Documentation
+    url: https://www.wmgmusiclicensing.com/
+  - type: SpectralRules
+    url: rules/warner-music-group-rules.yml
+  - type: JSONSchema
+    url: json-schema/warner-music-group-license-schema.json
+  - type: JSONLDContext
+    url: json-ld/warner-music-group-context.jsonld
+  - type: Vocabulary
+    url: vocabulary/warner-music-group-vocabulary.yml
+- aid: warner-music-group:warner-music-group-catalog-api
+  name: Warner Music Group Catalog API
+  description: Music catalog search and discovery
+  humanURL: https://www.wmgmusiclicensing.com/
+  baseURL: https://api.wmg.com
+  tags:
+  - Catalog
+  properties:
+  - type: OpenAPI
+    url: openapi/warner-music-group-catalog-api-openapi.yml
+  - type: Documentation
+    url: https://www.wmgmusiclicensing.com/
+  - type: SpectralRules
+    url: rules/warner-music-group-rules.yml
+  - type: JSONSchema
+    url: json-schema/warner-music-group-license-schema.json
+  - type: JSONLDContext
+    url: json-ld/warner-music-group-context.jsonld
+  - type: Vocabulary
+    url: vocabulary/warner-music-group-vocabulary.yml
+- aid: warner-music-group:warner-music-group-licenses-api
+  name: Warner Music Group Licenses API
+  description: License request and management
+  humanURL: https://www.wmgmusiclicensing.com/
+  baseURL: https://api.wmg.com
+  tags:
+  - Licenses
+  properties:
+  - type: OpenAPI
+    url: openapi/warner-music-group-licenses-api-openapi.yml
+  - type: Documentation
+    url: https://www.wmgmusiclicensing.com/
+  - type: SpectralRules
+    url: rules/warner-music-group-rules.yml
+  - type: JSONSchema
+    url: json-schema/warner-music-group-license-schema.json
+  - type: JSONLDContext
+    url: json-ld/warner-music-group-context.jsonld
+  - type: Vocabulary
+    url: vocabulary/warner-music-group-vocabulary.yml
+- aid: warner-music-group:warner-music-group-tracks-api
+  name: Warner Music Group Tracks API
+  description: Track and recording details
+  humanURL: https://www.wmgmusiclicensing.com/
+  baseURL: https://api.wmg.com
+  tags:
+  - Tracks
+  properties:
+  - type: OpenAPI
+    url: openapi/warner-music-group-tracks-api-openapi.yml
+  - type: Documentation
+    url: https://www.wmgmusiclicensing.com/
+  - type: SpectralRules
+    url: rules/warner-music-group-rules.yml
+  - type: JSONSchema
+    url: json-schema/warner-music-group-license-schema.json
+  - type: JSONLDContext
+    url: json-ld/warner-music-group-context.jsonld
+  - type: Vocabulary
+    url: vocabulary/warner-music-group-vocabulary.yml
 common:
   - type: AgenticAccess
     url: agentic-access/warner-music-group-agentic-access.yml
