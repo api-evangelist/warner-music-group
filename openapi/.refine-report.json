@@ -1,0 +1,20 @@
+{
+  "provider": "warner-music-group",
+  "sources": [
+    "warner-music-group-artists-api-openapi.yml",
+    "warner-music-group-catalog-api-openapi.yml",
+    "warner-music-group-licenses-api-openapi.yml",
+    "warner-music-group-tracks-api-openapi.yml"
+  ],
+  "outputs": [
+    "warner-music-group-artists-api-openapi.yml",
+    "warner-music-group-catalog-api-openapi.yml",
+    "warner-music-group-licenses-api-openapi.yml",
+    "warner-music-group-tracks-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
