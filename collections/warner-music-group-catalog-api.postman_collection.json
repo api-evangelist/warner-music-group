@@ -1,0 +1,311 @@
+{
+  "item": [
+    {
+      "id": "3e6c55f4-4f1b-4685-9852-23bab8feaa1d",
+      "name": "Catalog",
+      "description": {
+        "content": "Music catalog search and discovery",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "50c506ba-71df-42e2-9757-7ffd545e0f20",
+          "name": "Search Music Catalog",
+          "request": {
+            "name": "Search Music Catalog",
+            "description": {
+              "content": "Search the WMG music catalog for recordings and compositions. Supports searching by artist name, track title, ISRC, ISWC, or keyword.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "catalog",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "(Required) Search query (artist name, track title, or keyword)"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "both",
+                  "description": "Type of music asset to search"
+                },
+                {
+                  "disabled": false,
+                  "key": "label",
+                  "value": "<string>",
+                  "description": "Filter by record label"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Maximum results to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Pagination offset"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "63d4a723-76ad-4a85-87fb-229a7bd945d9",
+              "name": "Search results returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "catalog",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "both"
+                    },
+                    {
+                      "key": "label",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"type\": \"composition\",\n      \"title\": \"string\",\n      \"artistName\": \"string\",\n      \"isrc\": \"string\",\n      \"iswc\": \"string\",\n      \"label\": \"string\",\n      \"releaseDate\": \"2012-09-20\",\n      \"licenseAvailable\": true\n    },\n    {\n      \"id\": \"string\",\n      \"type\": \"recording\",\n      \"title\": \"string\",\n      \"artistName\": \"string\",\n      \"isrc\": \"string\",\n      \"iswc\": \"string\",\n      \"label\": \"string\",\n      \"releaseDate\": \"1952-10-20\",\n      \"licenseAvailable\": false\n    }\n  ],\n  \"total\": 3586,\n  \"limit\": 643,\n  \"offset\": 6332\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a77fae00-d096-4bd7-9c11-58a9f95fbc90",
+              "name": "Invalid search parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "catalog",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "both"
+                    },
+                    {
+                      "key": "label",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "37258981-15fe-49d8-832b-ec62c753c175",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "catalog",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "both"
+                    },
+                    {
+                      "key": "label",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.wmg.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "catalog:read licenses:read licenses:write"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.wmg.com/oauth/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://auth.wmg.com/oauth/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "84beb15d-b0b0-4b97-a24d-5e5b79ed70d8",
+    "name": "Warner Music Group Licensing Artists Catalog API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Warner Music Group Licensing API enables content creators and developers to search the WMG catalog, request synchronization licenses, mechanical licenses, and digital licenses for music recordings and compositions from Warner Records, Atlantic Records, Elektra Records, and Warner Chappell Music. The API covers all major use cases including film/TV sync, advertising, digital services, and live performance.\n\nContact Support:\n Name: WMG Licensing Support\n Email: onlinelicensing@wmg.com",
+      "type": "text/plain"
+    }
+  }
+}

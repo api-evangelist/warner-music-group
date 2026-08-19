@@ -1,0 +1,95 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Warner Music Group Licensing Artists Licenses API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://auth.wmg.com/oauth/authorize",
+      "accessTokenUrl": "https://auth.wmg.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Licenses",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Licenses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wmg.com/v1/licenses",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by license status"
+              },
+              {
+                "name": "licenseType",
+                "value": "",
+                "type": "query",
+                "description": "Filter by license type"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum results to return"
+              }
+            ]
+          },
+          "docs": "List all license requests submitted by the authenticated partner."
+        },
+        {
+          "info": {
+            "name": "Request License",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.wmg.com/v1/licenses",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit a new license request for a WMG recording or composition. Specify the use case (sync, mechanical, digital, performance) and usage details."
+        },
+        {
+          "info": {
+            "name": "Get License",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wmg.com/v1/licenses/:licenseId",
+            "params": [
+              {
+                "name": "licenseId",
+                "value": "",
+                "type": "path",
+                "description": "License request identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve the details and status of a specific license request."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

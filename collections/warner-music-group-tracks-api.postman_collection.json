@@ -1,0 +1,249 @@
+{
+  "item": [
+    {
+      "id": "4e2cafe9-ed55-4ad9-9e2d-2ae0a18f2d9d",
+      "name": "Tracks",
+      "description": {
+        "content": "Track and recording details",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a10bc44e-a820-44df-bec7-ad617076ce83",
+          "name": "Get Track by ISRC",
+          "request": {
+            "name": "Get Track by ISRC",
+            "description": {
+              "content": "Retrieve full details of a recording by its International Standard Recording Code (ISRC).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "tracks",
+                ":isrc"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "isrc",
+                  "description": "(Required) International Standard Recording Code (ISRC)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "33c32b75-65c8-4d8d-bb42-385864621e30",
+              "name": "Track details returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "tracks",
+                    ":isrc"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "isrc",
+                      "description": "(Required) International Standard Recording Code (ISRC)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"isrc\": \"string\",\n    \"title\": \"string\",\n    \"artistName\": \"string\",\n    \"artistId\": \"string\",\n    \"albumTitle\": \"string\",\n    \"releaseDate\": \"1998-01-25\",\n    \"duration\": 9013,\n    \"label\": \"string\",\n    \"genre\": \"string\",\n    \"explicit\": false,\n    \"licenseAvailable\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aefd72ff-b797-43bc-ab7a-077005462116",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "tracks",
+                    ":isrc"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "isrc",
+                      "description": "(Required) International Standard Recording Code (ISRC)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b9e05025-8b1b-4eca-9fa2-1b55ff2ded08",
+              "name": "Track not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "tracks",
+                    ":isrc"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "isrc",
+                      "description": "(Required) International Standard Recording Code (ISRC)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.wmg.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "catalog:read licenses:read licenses:write"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.wmg.com/oauth/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://auth.wmg.com/oauth/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f8e62fac-96a5-4781-b5e9-e839751ad61a",
+    "name": "Warner Music Group Licensing Artists Tracks API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Warner Music Group Licensing API enables content creators and developers to search the WMG catalog, request synchronization licenses, mechanical licenses, and digital licenses for music recordings and compositions from Warner Records, Atlantic Records, Elektra Records, and Warner Chappell Music. The API covers all major use cases including film/TV sync, advertising, digital services, and live performance.\n\nContact Support:\n Name: WMG Licensing Support\n Email: onlinelicensing@wmg.com",
+      "type": "text/plain"
+    }
+  }
+}

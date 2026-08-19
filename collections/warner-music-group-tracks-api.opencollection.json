@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Warner Music Group Licensing Artists Tracks API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://auth.wmg.com/oauth/authorize",
+      "accessTokenUrl": "https://auth.wmg.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tracks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Track by ISRC",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wmg.com/v1/tracks/:isrc",
+            "params": [
+              {
+                "name": "isrc",
+                "value": "",
+                "type": "path",
+                "description": "International Standard Recording Code (ISRC)"
+              }
+            ]
+          },
+          "docs": "Retrieve full details of a recording by its International Standard Recording Code (ISRC)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

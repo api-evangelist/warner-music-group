@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Warner Music Group Licensing Artists API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://auth.wmg.com/oauth/authorize",
+      "accessTokenUrl": "https://auth.wmg.com/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Artists",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Artist",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.wmg.com/v1/artists/:artistId",
+            "params": [
+              {
+                "name": "artistId",
+                "value": "",
+                "type": "path",
+                "description": "WMG artist identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve artist profile and catalog information."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

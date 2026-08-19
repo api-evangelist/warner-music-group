@@ -1,0 +1,249 @@
+{
+  "item": [
+    {
+      "id": "781ebc20-26d5-464d-8b91-a4f233a66c25",
+      "name": "Artists",
+      "description": {
+        "content": "Artist information",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0df3b7cb-06e6-4b2a-b367-425e568a97f6",
+          "name": "Get Artist",
+          "request": {
+            "name": "Get Artist",
+            "description": {
+              "content": "Retrieve artist profile and catalog information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "artists",
+                ":artistId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "artistId",
+                  "description": "(Required) WMG artist identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1eab36e8-6fed-4910-8c7f-d42fe543f555",
+              "name": "Artist information returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "artists",
+                    ":artistId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "artistId",
+                      "description": "(Required) WMG artist identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"label\": \"string\",\n    \"genres\": [\n      \"string\",\n      \"string\"\n    ],\n    \"trackCount\": 1327,\n    \"website\": \"https://f.cmAkdF5odqmgqnqdpUhEs9QUWWnfHecaHac,17A1K7jgYw3W6neQLYv7dNW1+XbZq\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "60794af5-6fcf-4418-9b1b-47d4f04daddb",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "artists",
+                    ":artistId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "artistId",
+                      "description": "(Required) WMG artist identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a5f97c67-57cd-410e-b8fd-f153d97f0596",
+              "name": "Artist not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "artists",
+                    ":artistId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "artistId",
+                      "description": "(Required) WMG artist identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.wmg.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "catalog:read licenses:read licenses:write"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.wmg.com/oauth/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://auth.wmg.com/oauth/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "efc45647-2ad5-494a-91c8-66b246a30d99",
+    "name": "Warner Music Group Licensing Artists API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Warner Music Group Licensing API enables content creators and developers to search the WMG catalog, request synchronization licenses, mechanical licenses, and digital licenses for music recordings and compositions from Warner Records, Atlantic Records, Elektra Records, and Warner Chappell Music. The API covers all major use cases including film/TV sync, advertising, digital services, and live performance.\n\nContact Support:\n Name: WMG Licensing Support\n Email: onlinelicensing@wmg.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,611 @@
+{
+  "item": [
+    {
+      "id": "d75a5b65-103f-4630-b6f9-cfae465b863d",
+      "name": "Licenses",
+      "description": {
+        "content": "License request and management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4346af76-8021-46b8-8e58-6e524f7ddb3a",
+          "name": "List Licenses",
+          "request": {
+            "name": "List Licenses",
+            "description": {
+              "content": "List all license requests submitted by the authenticated partner.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "licenses"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by license status"
+                },
+                {
+                  "disabled": false,
+                  "key": "licenseType",
+                  "value": "<string>",
+                  "description": "Filter by license type"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Maximum results to return"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "47ceb73e-2197-4e72-a3e6-851160ca23ed",
+              "name": "License list returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "licenses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "licenseType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"status\": \"approved\",\n      \"licenseType\": \"digital\",\n      \"trackIsrc\": \"string\",\n      \"trackTitle\": \"string\",\n      \"artistName\": \"string\",\n      \"useCase\": \"string\",\n      \"territory\": \"string\",\n      \"startDate\": \"1957-07-16\",\n      \"endDate\": \"2004-12-21\",\n      \"fee\": 460.6034293431427,\n      \"submittedAt\": \"2010-12-30T14:08:59.332Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"status\": \"rejected\",\n      \"licenseType\": \"mechanical\",\n      \"trackIsrc\": \"string\",\n      \"trackTitle\": \"string\",\n      \"artistName\": \"string\",\n      \"useCase\": \"string\",\n      \"territory\": \"string\",\n      \"startDate\": \"2012-06-11\",\n      \"endDate\": \"2005-01-15\",\n      \"fee\": 3952.3515591382043,\n      \"submittedAt\": \"1957-10-30T17:20:43.387Z\"\n    }\n  ],\n  \"total\": 3240\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9e8ec0d0-46a9-498c-8e7c-32524fd4e7fd",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "licenses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "licenseType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9e40ca88-dbce-48e0-841e-f6a2560cf6d5",
+          "name": "Request License",
+          "request": {
+            "name": "Request License",
+            "description": {
+              "content": "Submit a new license request for a WMG recording or composition. Specify the use case (sync, mechanical, digital, performance) and usage details.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "licenses"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"trackIsrc\": \"<string>\",\n  \"licenseType\": \"<string>\",\n  \"useCase\": \"<string>\",\n  \"territory\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"exclusivity\": false,\n  \"notes\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9dad161a-8567-4db6-8a39-b17f2ce071d9",
+              "name": "License request submitted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "licenses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"trackIsrc\": \"<string>\",\n  \"licenseType\": \"<string>\",\n  \"useCase\": \"<string>\",\n  \"territory\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"exclusivity\": false,\n  \"notes\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"status\": \"expired\",\n    \"licenseType\": \"mechanical\",\n    \"trackIsrc\": \"string\",\n    \"trackTitle\": \"string\",\n    \"artistName\": \"string\",\n    \"useCase\": \"string\",\n    \"territory\": \"string\",\n    \"startDate\": \"2022-11-07\",\n    \"endDate\": \"1999-07-12\",\n    \"fee\": 5083.555275477634,\n    \"submittedAt\": \"1976-12-03T14:54:29.467Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b351aca2-daef-4e19-9417-9105e7f85a06",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "licenses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"trackIsrc\": \"<string>\",\n  \"licenseType\": \"<string>\",\n  \"useCase\": \"<string>\",\n  \"territory\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"exclusivity\": false,\n  \"notes\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "24638d8b-418f-4255-abe6-7bf81380c9b7",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "licenses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"trackIsrc\": \"<string>\",\n  \"licenseType\": \"<string>\",\n  \"useCase\": \"<string>\",\n  \"territory\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"exclusivity\": false,\n  \"notes\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4f889d68-c0c1-4495-b595-9458d881eeb1",
+          "name": "Get License",
+          "request": {
+            "name": "Get License",
+            "description": {
+              "content": "Retrieve the details and status of a specific license request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "licenses",
+                ":licenseId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "licenseId",
+                  "description": "(Required) License request identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e80432f8-1baa-4c17-b54e-aa6d0b6ffd44",
+              "name": "License details returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "licenses",
+                    ":licenseId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "licenseId",
+                      "description": "(Required) License request identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"status\": \"expired\",\n    \"licenseType\": \"mechanical\",\n    \"trackIsrc\": \"string\",\n    \"trackTitle\": \"string\",\n    \"artistName\": \"string\",\n    \"useCase\": \"string\",\n    \"territory\": \"string\",\n    \"startDate\": \"2022-11-07\",\n    \"endDate\": \"1999-07-12\",\n    \"fee\": 5083.555275477634,\n    \"submittedAt\": \"1976-12-03T14:54:29.467Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "80898a79-e38f-44eb-98ef-40052836eccd",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "licenses",
+                    ":licenseId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "licenseId",
+                      "description": "(Required) License request identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "30901102-1610-4fa4-bd19-864f8f398c91",
+              "name": "License not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "licenses",
+                    ":licenseId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "licenseId",
+                      "description": "(Required) License request identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.wmg.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "catalog:read licenses:read licenses:write"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.wmg.com/oauth/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://auth.wmg.com/oauth/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2e9b142c-b0ed-4846-bd47-e1f264b198c0",
+    "name": "Warner Music Group Licensing Artists Licenses API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Warner Music Group Licensing API enables content creators and developers to search the WMG catalog, request synchronization licenses, mechanical licenses, and digital licenses for music recordings and compositions from Warner Records, Atlantic Records, Elektra Records, and Warner Chappell Music. The API covers all major use cases including film/TV sync, advertising, digital services, and live performance.\n\nContact Support:\n Name: WMG Licensing Support\n Email: onlinelicensing@wmg.com",
+      "type": "text/plain"
+    }
+  }
+}
