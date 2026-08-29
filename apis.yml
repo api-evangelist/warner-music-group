@@ -124,6 +124,9 @@ apis:
   - type: Vocabulary
     url: vocabulary/warner-music-group-vocabulary.yml
 common:
+  - type: CapabilityMap
+    url: capabilities/warner-music-group-capability-edges.yml
+    name: Warner Music Group Business Capability Map
   - type: AgenticAccess
     url: agentic-access/warner-music-group-agentic-access.yml
   - type: DomainSecurity
