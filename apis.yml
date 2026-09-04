@@ -36,7 +36,7 @@ tags:
 type: Index
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/warner-music-group.png
 access: 3rd-Party
-position: Consumer
+position: Consuming
 description: >-
   Warner Music Group is one of the major record labels in the music industry, with recorded music and music publishing
   operations spanning a roster of artists, songwriters, and labels around the world. WMG includes Warner Records,
