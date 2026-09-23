@@ -1,7 +1,9 @@
 ---
 title: Spotify and Universal Music Group have agreed on a deal ...
 url: https://www.facebook.com/cnn/posts/spotify-and-universal-music-group-have-agreed-on-a-deal-that-will-allow-some-sub/1365341595458488/
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Warner Music Group" press release artificial intelligence'
 position: 5
 source: serpapi-google

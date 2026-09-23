@@ -1,10 +1,7 @@
 {
   "provider": "warner-music-group",
   "sources": [
-    "warner-music-group-artists-api-openapi.yml",
-    "warner-music-group-catalog-api-openapi.yml",
-    "warner-music-group-licenses-api-openapi.yml",
-    "warner-music-group-tracks-api-openapi.yml"
+    "_original/warner-music-group-licensing-openapi.yml"
   ],
   "outputs": [
     "warner-music-group-artists-api-openapi.yml",
@@ -15,6 +12,15 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "warner-music-group-licensing-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "warner-music-group-artists-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "warner-music-group-catalog-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "warner-music-group-licenses-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "warner-music-group-tracks-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

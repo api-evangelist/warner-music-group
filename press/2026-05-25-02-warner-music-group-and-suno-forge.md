@@ -1,7 +1,9 @@
 ---
 title: WARNER MUSIC GROUP AND SUNO FORGE ...
 url: https://www.prnewswire.com/news-releases/warner-music-group-and-suno-forge-groundbreaking-partnership-302626017.html
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Warner Music Group" press release artificial intelligence'
 position: 2
 source: serpapi-google

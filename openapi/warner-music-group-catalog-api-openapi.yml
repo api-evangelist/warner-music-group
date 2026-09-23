@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Warner Music Group Licensing Artists Catalog API
+  title: Warner Music Group Licensing Catalog API
   description: The Warner Music Group Licensing API enables content creators and developers to search the WMG catalog, request synchronization licenses, mechanical licenses, and digital licenses for music recordings and compositions from Warner Records, Atlantic Records, Elektra Records, and Warner Chappell Music. The API covers all major use cases including film/TV sync, advertising, digital services, and live performance.
   version: 1.0.0
   contact:
@@ -77,6 +77,20 @@ paths:
           description: Unauthorized
 components:
   schemas:
+    CatalogSearchResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/CatalogSearchResult'
+        total:
+          type: integer
+          description: Total matching results
+        limit:
+          type: integer
+        offset:
+          type: integer
     CatalogSearchResult:
       type: object
       properties:
@@ -104,20 +118,6 @@ components:
           format: date
         licenseAvailable:
           type: boolean
-    CatalogSearchResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/CatalogSearchResult'
-        total:
-          type: integer
-          description: Total matching results
-        limit:
-          type: integer
-        offset:
-          type: integer
   securitySchemes:
     OAuth2:
       type: oauth2
