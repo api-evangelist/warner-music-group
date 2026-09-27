@@ -45,6 +45,11 @@ paths:
           description: Artist not found
 components:
   schemas:
+    ArtistResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Artist'
     Artist:
       type: object
       properties:
@@ -69,11 +74,6 @@ components:
           type: string
           format: uri
           description: Official artist website
-    ArtistResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Artist'
   securitySchemes:
     OAuth2:
       type: oauth2

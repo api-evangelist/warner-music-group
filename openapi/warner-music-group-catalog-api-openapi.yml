@@ -77,20 +77,6 @@ paths:
           description: Unauthorized
 components:
   schemas:
-    CatalogSearchResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/CatalogSearchResult'
-        total:
-          type: integer
-          description: Total matching results
-        limit:
-          type: integer
-        offset:
-          type: integer
     CatalogSearchResult:
       type: object
       properties:
@@ -118,6 +104,20 @@ components:
           format: date
         licenseAvailable:
           type: boolean
+    CatalogSearchResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/CatalogSearchResult'
+        total:
+          type: integer
+          description: Total matching results
+        limit:
+          type: integer
+        offset:
+          type: integer
   securitySchemes:
     OAuth2:
       type: oauth2
