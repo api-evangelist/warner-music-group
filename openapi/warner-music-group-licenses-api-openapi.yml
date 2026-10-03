@@ -114,53 +114,15 @@ paths:
           description: License not found
 components:
   schemas:
-    LicenseResponse:
+    LicenseListResponse:
       type: object
       properties:
         data:
-          $ref: '#/components/schemas/License'
-    LicenseRequest:
-      type: object
-      required:
-      - trackIsrc
-      - licenseType
-      - useCase
-      - territory
-      - startDate
-      - endDate
-      properties:
-        trackIsrc:
-          type: string
-          description: ISRC of the recording to license
-        licenseType:
-          type: string
-          enum:
-          - sync
-          - mechanical
-          - digital
-          - performance
-          description: Type of license requested
-        useCase:
-          type: string
-          description: Description of intended use (e.g., "TV commercial", "streaming film")
-        territory:
-          type: string
-          description: License territory (ISO 3166 country code or WORLD)
-        startDate:
-          type: string
-          format: date
-          description: Requested license start date
-        endDate:
-          type: string
-          format: date
-          description: Requested license end date
-        exclusivity:
-          type: boolean
-          default: false
-          description: Whether exclusive rights are requested
-        notes:
-          type: string
-          description: Additional notes or context for the license request
+          type: array
+          items:
+            $ref: '#/components/schemas/License'
+        total:
+          type: integer
     License:
       type: object
       properties:
@@ -209,15 +171,53 @@ components:
         submittedAt:
           type: string
           format: date-time
-    LicenseListResponse:
+    LicenseRequest:
+      type: object
+      required:
+      - trackIsrc
+      - licenseType
+      - useCase
+      - territory
+      - startDate
+      - endDate
+      properties:
+        trackIsrc:
+          type: string
+          description: ISRC of the recording to license
+        licenseType:
+          type: string
+          enum:
+          - sync
+          - mechanical
+          - digital
+          - performance
+          description: Type of license requested
+        useCase:
+          type: string
+          description: Description of intended use (e.g., "TV commercial", "streaming film")
+        territory:
+          type: string
+          description: License territory (ISO 3166 country code or WORLD)
+        startDate:
+          type: string
+          format: date
+          description: Requested license start date
+        endDate:
+          type: string
+          format: date
+          description: Requested license end date
+        exclusivity:
+          type: boolean
+          default: false
+          description: Whether exclusive rights are requested
+        notes:
+          type: string
+          description: Additional notes or context for the license request
+    LicenseResponse:
       type: object
       properties:
         data:
-          type: array
-          items:
-            $ref: '#/components/schemas/License'
-        total:
-          type: integer
+          $ref: '#/components/schemas/License'
   securitySchemes:
     OAuth2:
       type: oauth2
