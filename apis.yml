@@ -124,6 +124,12 @@ apis:
   - type: Vocabulary
     url: vocabulary/warner-music-group-vocabulary.yml
 common:
+  - type: Plans
+    url: plans/warner-music-group-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/warner-music-group-rate-limits.yml
+  - type: FinOps
+    url: finops/warner-music-group-finops.yml
   - type: CapabilityMap
     url: capabilities/warner-music-group-capability-edges.yml
     name: Warner Music Group Business Capability Map
