@@ -114,15 +114,11 @@ paths:
           description: License not found
 components:
   schemas:
-    LicenseListResponse:
+    LicenseResponse:
       type: object
       properties:
         data:
-          type: array
-          items:
-            $ref: '#/components/schemas/License'
-        total:
-          type: integer
+          $ref: '#/components/schemas/License'
     License:
       type: object
       properties:
@@ -171,6 +167,15 @@ components:
         submittedAt:
           type: string
           format: date-time
+    LicenseListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/License'
+        total:
+          type: integer
     LicenseRequest:
       type: object
       required:
@@ -213,11 +218,6 @@ components:
         notes:
           type: string
           description: Additional notes or context for the license request
-    LicenseResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/License'
   securitySchemes:
     OAuth2:
       type: oauth2

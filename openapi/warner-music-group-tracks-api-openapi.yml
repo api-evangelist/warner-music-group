@@ -45,11 +45,6 @@ paths:
           description: Track not found
 components:
   schemas:
-    TrackResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/Track'
     Track:
       type: object
       properties:
@@ -87,6 +82,11 @@ components:
         licenseAvailable:
           type: boolean
           description: Whether this track is available for licensing
+    TrackResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Track'
   securitySchemes:
     OAuth2:
       type: oauth2
